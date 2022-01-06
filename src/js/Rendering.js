@@ -4,6 +4,7 @@ export default class Rendering {
   constructor() {
     this.container = null;
     this.tickets = null;
+    this.checkboxes = [];
     this.addBtn = null;
     this.modal = null;
     this.modalDelete = null;
@@ -55,10 +56,10 @@ export default class Rendering {
       divTicket.appendChild(divCheckbox);
 
       const checkbox = document.createElement('input');
+      checkbox.classList.add('status');
       checkbox.type = 'checkbox';
-      checkbox.disabled = true;
-      if (data[i].status) checkbox.checked = true;
-      checkbox.dataset.id = `${data[i].id}`;
+      if (data[i].status) checkbox.setAttribute('checked', true);
+      checkbox.id = `${data[i].id}`;
       divCheckbox.appendChild(checkbox);
       this.checkboxes.push(checkbox);
 
@@ -70,12 +71,12 @@ export default class Rendering {
       const divDate = document.createElement('div');
       divDate.classList.add('date-container');
 
-      const date = new Date(data[i].created * 1000);
+      const date = new Date(data[i].created);
       let year = date.getFullYear();
       year = String(year).slice(2);
       let month = date.getMonth() + 1;
       if (month < 10) month = `0${month}`;
-      let day = date.getDay();
+      let day = date.getDate();
       if (day < 10) day = `0${day}`;
       let hours = date.getHours();
       if (hours < 10) hours = `0${hours}`;

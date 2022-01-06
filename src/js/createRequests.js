@@ -10,18 +10,13 @@ function urlParameters(parameters) {
 
 export default function createRequests(parameters) {
   return new Promise((resolve, reject) => {
-    const URL = 'https://hw-ahj-2-3.herokuapp.com/';
+    // const URL = 'https://hw-ahj-2-3.herokuapp.com/';
+    const URL = 'http://localhost:8120/';
     const xhr = new XMLHttpRequest();
 
     xhr.open(parameters.method, URL + urlParameters(parameters));
     if (parameters.method === 'POST' || parameters.method === 'PUT') {
-      const data = new FormData();
-      for (const key in parameters.requestBody) {
-        if (Object.prototype.hasOwnProperty.call(parameters.requestBody, key)) {
-          data.append(key, parameters.requestBody[key]);
-        }
-      }
-      xhr.send(data);
+      xhr.send(JSON.stringify(parameters.requestBody));
     } else {
       xhr.send();
     }
