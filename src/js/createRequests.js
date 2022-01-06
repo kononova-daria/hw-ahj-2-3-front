@@ -10,8 +10,7 @@ function urlParameters(parameters) {
 
 export default function createRequests(parameters) {
   return new Promise((resolve, reject) => {
-    // const URL = 'https://hw-ahj-2-3.herokuapp.com/';
-    const URL = 'http://localhost:8120/';
+    const URL = 'https://hw-ahj-2-3-back.herokuapp.com/';
     const xhr = new XMLHttpRequest();
 
     xhr.open(parameters.method, URL + urlParameters(parameters));
